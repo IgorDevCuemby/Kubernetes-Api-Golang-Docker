@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container-go
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-go
+  template:
+    metadata:
+      labels:
+        app: api-go
+    spec:
+      containers:
+      - name: container-go
+        image: igorarizacuemby/go-images
+        ports: 
+        - containerPort: 8080
+        env:
+          - name: PGUSER
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: PGUSER
+          - name: PGPASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: PGPASSWORD
+          - name: PGHOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: PGHOST
+          - name: PGPORT
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: PGPORT
+          - name: PGDATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: PGDATABASE

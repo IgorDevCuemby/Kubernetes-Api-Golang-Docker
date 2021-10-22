@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  PGPORT: "5432"
+  PGUSER: postgres
+  PGPASSWORD: admin
+  PGDATABASE: postgres
+  PGHOST: container-postgres.default
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: default
+  

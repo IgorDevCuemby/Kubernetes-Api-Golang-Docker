@@ -16,3 +16,5 @@ RUN go build  ./cmd/micro-videogame
 EXPOSE 8080
 
 CMD ["./micro-videogame"]
+
+

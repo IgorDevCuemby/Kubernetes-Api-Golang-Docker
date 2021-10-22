@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: admin
+  POSTGRES_DB: postgres
+kind: ConfigMap
+metadata:
+  name: config-pg
+  namespace: default

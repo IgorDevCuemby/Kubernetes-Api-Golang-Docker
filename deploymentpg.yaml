@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container-postgres
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: pg
+  template:
+    metadata:
+      labels:
+        bb: pg
+    spec:
+      containers:
+      - name: container-postgres
+        image: postgres
+        ports: 
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: config-pg
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: config-pg
+                key: POSTGRES_PASSWORD
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: config-pg
+                key: POSTGRES_DB
